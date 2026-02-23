@@ -44,7 +44,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col">
-                <a href="#" class="btn btn-primary px-5">VOLTAR</a>
+                <a href="{{ URL::to('/') }}" class="btn btn-primary px-5">VOLTAR</a>
             </div>
             <div class="col text-end">
                 <a href="#" class="btn btn-secondary px-5">DESCARREGAR EXERCÍCIOS</a>

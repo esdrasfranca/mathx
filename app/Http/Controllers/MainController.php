@@ -8,6 +8,7 @@ class MainController extends Controller
 {
     public function home()
     {
+        session(['exercicios' => null]);
         return view('home');
     }
 
@@ -48,7 +49,7 @@ class MainController extends Controller
     public function imprimirExercicios()
     {
         if (!session()->has('exercicios')) {
-            return redirect('home');
+            return redirect('/');
         }
 
         $exercicios = session('exercicios');
