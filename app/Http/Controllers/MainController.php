@@ -59,18 +59,29 @@ class MainController extends Controller
         echo '<hr>';
 
         foreach ($exercicios as $exercicio) {
-            echo '<h2>Exercício ' . str_pad($exercicio['exercicio_numero'], 2, '0', STR_PAD_LEFT) . ': ' . $exercicio['exercicio'] . ' =</h2>';
+            echo '<h2>Exercício ' . $exercicio['exercicio_numero'] . ': ' . $exercicio['exercicio'] . ' =</h2>';
         }
 
         echo '<hr>';
         foreach ($exercicios as $exercicio) {
-            echo '<p>Resposta Exercício ' . str_pad($exercicio['exercicio_numero'], 2, '0', STR_PAD_LEFT) . ': ' . $exercicio['resposta'] . '</p>';
+            echo '<p>Resposta Exercício ' . $exercicio['exercicio_numero'] . ': ' . $exercicio['resposta'] . '</p>';
         }
 
         echo '</pre>';
     }
 
-    public function exportarExercicios() {}
+    public function exportarExercicios() {
+        if (!session()->has('exercicios')) {
+            return redirect('/');
+        }
+
+        $exercicios = session('exercicios');
+
+        $data = '';
+        foreach ($exercicios as $exercicio) {
+
+        }
+    }
 
     private function gerar($operacao, $min, $max, $index): array
     {
@@ -104,7 +115,7 @@ class MainController extends Controller
         }
 
         return [
-            'exercicio_numero' => $index + 1,
+            'exercicio_numero' => str_pad(($index + 1), 2, '0', STR_PAD_LEFT),
             'exercicio' => $exercicio,
             'resposta' => $resposta,
             'operacao' => $operacao,
