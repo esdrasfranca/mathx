@@ -1,31 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt">
+@extends('layouts.mainLayout')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TITLE]</title>
-    <!-- favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
-    <!-- main css -->
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
-
-<body>
-
-    <!-- logo -->
-    <div class="text-center my-3">
-        <img src="assets/images/logo.jpg" alt="logo" class="img-fluid">
-    </div>
-
-    <h3 class="text-center text-secondary mb-5">
-        Selecione as opções para gerar<br><span class="text-info">exercícios de matemática</span>.
-    </h3>
+    @include('layouts.logo')
 
     <!-- form -->
-    <form action="#" method="post">
+    <form action="{{ URL::to('/gerar-exercicios') }}" method="post">
+
+        @csrf
 
         <div class="container border border-primary rounded-3 p-5">
 
@@ -101,15 +82,16 @@
 
         </div>
 
+       @if($errors->any())
+            <div class="container">
+                <div class="row">
+                    <div class="alert alert-danger mt-2">
+                        Error
+                    </div>
+                </div>
+            </div>
+       @endif
+
     </form>
 
-    <!-- footer -->
-    <footer class="text-center mt-5">
-        <p class="text-secondary">MathX &copy; <span class="text-info">{{date('Y')}}</span></p>
-    </footer>
-
-    <!-- bootstrap -->
-    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+@endsection()

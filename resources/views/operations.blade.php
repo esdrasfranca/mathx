@@ -27,41 +27,12 @@
 
         <div class="row">
 
-            <!-- each operation -->
-            <div class="col-3 display-6 mb-3">
-                <span class="badge bg-dark">1</span>
-                <span>000</span>
-                <span>+</span>
-                <span>000</span>
-            </div>
-
-            <div class="col-3 display-6 mb-3">
-                <span class="badge bg-dark">2</span>
-                <span>000</span>
-                <span>+</span>
-                <span>000</span>
-            </div>
-
-            <div class="col-3 display-6 mb-3">
-                <span class="badge bg-dark">3</span>
-                <span>000</span>
-                <span>+</span>
-                <span>000</span>
-            </div>
-
-            <div class="col-3 display-6 mb-3">
-                <span class="badge bg-dark">4</span>
-                <span>000</span>
-                <span>+</span>
-                <span>000</span>
-            </div>
-
-            <div class="col-3 display-6 mb-3">
-                <span class="badge bg-dark">4</span>
-                <span>000</span>
-                <span>+</span>
-                <span>000</span>
-            </div>
+            @foreach ($exercicios as $exercicio)
+                <div class="col-3 display-6 mb-3">
+                    <span class="badge bg-dark">{{ $exercicio['exercicio_numero'] }}</span>
+                    <span>{{ $exercicio['exercicio'] }}</span>
+                </div>    
+            @endforeach
 
         </div>
 
@@ -77,7 +48,7 @@
             </div>
             <div class="col text-end">
                 <a href="#" class="btn btn-secondary px-5">DESCARREGAR EXERCÍCIOS</a>
-                <a href="#" class="btn btn-secondary px-5">IMPRIMIR EXERCÍCIOS</a>
+                <a href="{{ URL::to('imprimir-exercicios') }}" class="btn btn-secondary px-5">IMPRIMIR EXERCÍCIOS</a>
             </div>
         </div>
     </div>
