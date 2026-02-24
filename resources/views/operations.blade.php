@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TITLE]</title>
+    <title>{{ env('APP_NAME') }}</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
     <!-- bootstrap -->
@@ -47,7 +47,7 @@
                 <a href="{{ URL::to('/') }}" class="btn btn-primary px-5">VOLTAR</a>
             </div>
             <div class="col text-end">
-                <a href="#" class="btn btn-secondary px-5">DESCARREGAR EXERCÍCIOS</a>
+                <a href="{{ URL::to('exportar-exercicios') }}" class="btn btn-secondary px-5">DESCARREGAR EXERCÍCIOS</a>
                 <a href="{{ URL::to('imprimir-exercicios') }}" class="btn btn-secondary px-5">IMPRIMIR EXERCÍCIOS</a>
             </div>
         </div>

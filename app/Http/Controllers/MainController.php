@@ -70,17 +70,31 @@ class MainController extends Controller
         echo '</pre>';
     }
 
-    public function exportarExercicios() {
+    public function exportarExercicios()
+    {
         if (!session()->has('exercicios')) {
             return redirect('/');
         }
 
         $exercicios = session('exercicios');
+        $filename = 'exercicios_' . env('APP_NAME') . '_' . date('YmdHis') . '.txt';
 
-        $data = '';
+        $content = 'Exercícios de Matemática - ' . env('APP_NAME') . "\n";
+        $content .= str_repeat('-', 50) . "\n\n";
         foreach ($exercicios as $exercicio) {
-
+            $content .= 'Exercício ' . $exercicio['exercicio_numero'] . ' > ' . $exercicio['exercicio'] . " = \n";
         }
+
+        $content .= str_repeat('-', 50) . "\n\n";
+        $content .= "Respostas\n\n";
+        foreach ($exercicios as $exercicio) {
+            $content .= $exercicio['exercicio_numero'] . ' > ' . $exercicio['resposta'] . "\n";
+        }
+
+        return response($content)
+            ->header('Content-Type', 'text/plain')
+            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->header('Content-Length', strlen($content));
     }
 
     private function gerar($operacao, $min, $max, $index): array
